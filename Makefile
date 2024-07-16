@@ -358,6 +358,12 @@ LIBC_TOP_HALF_MUSL_SOURCES += \
         thread/wasm32/wasi_thread_start.s \
     )
 endif
+ifeq ($(THREAD_MODEL), single)
+LIBC_TOP_HALF_MUSL_SOURCES += \
+    $(addprefix $(LIBC_TOP_HALF_DIR)/stub-pthreads/, \
+        stub-pthreads.c \
+    )
+endif
 
 MUSL_PRINTSCAN_SOURCES = \
     $(LIBC_TOP_HALF_MUSL_SRC_DIR)/internal/floatscan.c \
