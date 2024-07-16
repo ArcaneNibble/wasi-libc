@@ -362,6 +362,18 @@ LIBC_TOP_HALF_MUSL_SOURCES += \
 endif
 ifeq ($(THREAD_MODEL), single)
 LIBC_TOP_HALF_MUSL_SOURCES += \
+    $(addprefix $(LIBC_TOP_HALF_MUSL_SRC_DIR)/, \
+        thread/default_attr.c \
+        thread/pthread_attr_destroy.c \
+        thread/pthread_attr_get.c \
+        thread/pthread_attr_init.c \
+        thread/pthread_attr_setdetachstate.c \
+        thread/pthread_attr_setguardsize.c \
+        thread/pthread_attr_setschedparam.c \
+        thread/pthread_attr_setstack.c \
+        thread/pthread_attr_setstacksize.c \
+    )
+LIBC_TOP_HALF_MUSL_SOURCES += \
     $(addprefix $(LIBC_TOP_HALF_DIR)/stub-pthreads/, \
         stub-pthreads.c \
     )
