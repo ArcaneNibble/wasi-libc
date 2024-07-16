@@ -382,6 +382,12 @@ LIBC_TOP_HALF_MUSL_SOURCES += \
         thread/pthread_condattr_init.c \
         thread/pthread_condattr_setclock.c \
         thread/pthread_condattr_setpshared.c \
+        thread/pthread_mutexattr_destroy.c \
+        thread/pthread_mutexattr_init.c \
+        thread/pthread_mutexattr_setprotocol.c \
+        thread/pthread_mutexattr_setpshared.c \
+        thread/pthread_mutexattr_setrobust.c \
+        thread/pthread_mutexattr_settype.c \
     )
 LIBC_TOP_HALF_MUSL_SOURCES += \
     $(addprefix $(LIBC_TOP_HALF_DIR)/stub-pthreads/, \
