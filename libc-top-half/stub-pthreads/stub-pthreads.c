@@ -83,3 +83,33 @@ int pthread_mutex_timedlock(pthread_mutex_t *restrict m, const struct timespec *
 	/* This means that we don't have to wait and then return timeout, we can just detect deadlock. */
 	return pthread_mutex_lock(m);
 }
+
+/* Condvar */
+
+int pthread_cond_init(pthread_cond_t *restrict c, const pthread_condattr_t *restrict a)
+{
+	return 0;
+}
+int pthread_cond_destroy(pthread_cond_t *c)
+{
+	return 0;
+}
+int pthread_cond_broadcast(pthread_cond_t *c)
+{
+	return 0;
+}
+int pthread_cond_signal(pthread_cond_t *c)
+{
+	return 0;
+}
+int pthread_cond_wait(pthread_cond_t *restrict c, pthread_mutex_t *restrict m)
+{
+	/* Because there is no other thread that can signal us, this is a deadlock immediately.
+	The other possible choice is to return immediately (spurious wakeup), but that is likely to
+	just result in the program spinning forever on a condition that cannot become true. */
+	__builtin_trap();
+}
+int pthread_cond_timedwait(pthread_cond_t *restrict c, pthread_mutex_t *restrict m, const struct timespec *restrict ts)
+{
+	__builtin_trap();
+}
