@@ -30,3 +30,50 @@ int pthread_barrier_wait(pthread_barrier_t *b)
 	if (!b->_b_limit) return PTHREAD_BARRIER_SERIAL_THREAD;
 	__builtin_trap();
 }
+
+/* Mutex */
+
+/*
+	Musl mutex
+	
+	_m_type:
+	b[7]	- process shared
+	b[3]	- priority inherit
+	b[2] 	- robust
+	b[1:0] 	- type
+		0 - normal
+		1 - recursive
+		2 - errorcheck
+
+	_m_lock:
+	b[30]	- owner dead, if robust
+	b[29:0]	- tid, if not normal
+	b[4]	- locked?, if normal
+*/
+
+int pthread_mutex_consistent(pthread_mutex_t *m)
+{
+	/* cannot be a robust mutex */
+	return EINVAL;
+}
+int pthread_mutex_lock(pthread_mutex_t *m)
+{
+	if (m->_m_type&3 != PTHREAD_MUTEX_RECURSIVE) {
+		if (m->_m_count) return EDEADLK;
+		m->_m_count = 1;
+	} else {
+		if ((unsigned)m->_m_count >= INT_MAX) return EAGAIN;
+		m->_m_count++;
+	}
+	return 0;
+}
+int pthread_mutex_trylock(pthread_mutex_t *m)
+{
+	return pthread_mutex_lock(m);
+}
+int pthread_mutex_unlock(pthread_mutex_t *m)
+{
+	if (!m->_m_count) return EPERM;
+	m->_m_count--;
+	return 0;
+}
