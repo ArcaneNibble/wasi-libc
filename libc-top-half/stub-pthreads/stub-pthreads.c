@@ -69,7 +69,14 @@ int pthread_mutex_lock(pthread_mutex_t *m)
 }
 int pthread_mutex_trylock(pthread_mutex_t *m)
 {
-	return pthread_mutex_lock(m);
+	if (m->_m_type&3 != PTHREAD_MUTEX_RECURSIVE) {
+		if (m->_m_count) return EBUSY;
+		m->_m_count = 1;
+	} else {
+		if ((unsigned)m->_m_count >= INT_MAX) return EAGAIN;
+		m->_m_count++;
+	}
+	return 0;
 }
 int pthread_mutex_unlock(pthread_mutex_t *m)
 {
