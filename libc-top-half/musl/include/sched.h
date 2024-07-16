@@ -38,6 +38,10 @@ int    sched_getscheduler(pid_t);
 int    sched_rr_get_interval(pid_t, struct timespec *);
 int    sched_setparam(pid_t, const struct sched_param *);
 int    sched_setscheduler(pid_t, int, const struct sched_param *);
+#else /* ... but this struct isn't optional. */
+struct sched_param {
+	int sched_priority;
+};
 #endif
 int     sched_yield(void);
 
