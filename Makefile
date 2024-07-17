@@ -380,6 +380,7 @@ LIBC_TOP_HALF_MUSL_SOURCES += \
         thread/pthread_barrierattr_destroy.c \
         thread/pthread_barrierattr_init.c \
         thread/pthread_barrierattr_setpshared.c \
+        thread/pthread_cleanup_push.c \
         thread/pthread_cancel.c \
         thread/pthread_condattr_destroy.c \
         thread/pthread_condattr_init.c \
