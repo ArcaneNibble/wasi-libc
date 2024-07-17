@@ -396,6 +396,7 @@ LIBC_TOP_HALF_MUSL_SOURCES += \
         thread/pthread_rwlockattr_destroy.c \
         thread/pthread_rwlockattr_init.c \
         thread/pthread_rwlockattr_setpshared.c \
+        thread/pthread_self.c \
         thread/pthread_spin_destroy.c \
         thread/pthread_spin_init.c \
     )
