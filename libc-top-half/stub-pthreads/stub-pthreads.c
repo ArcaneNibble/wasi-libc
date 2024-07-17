@@ -237,3 +237,12 @@ int pthread_timedjoin_np(pthread_t t, void **res, const struct timespec *at)
 {
 	return 0;
 }
+
+int pthread_once(pthread_once_t *control, void (*init)(void))
+{
+	if (!*control) {
+		init();
+		*control = 1;
+	}
+	return 0;
+}
