@@ -1,3 +1,4 @@
+#ifdef __wasilibc_unmodified_upstream
 #include <pthread.h>
 #include "libc.h"
 #include "lock.h"
@@ -47,3 +48,10 @@ int pthread_atfork(void (*prepare)(void), void (*parent)(void), void (*child)(vo
 	UNLOCK(lock);
 	return 0;
 }
+#else
+#include "pthread_impl.h"
+int pthread_atfork(void (*prepare)(void), void (*parent)(void), void (*child)(void))
+{
+	return ENOMEM;
+}
+#endif

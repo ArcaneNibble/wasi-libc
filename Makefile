@@ -285,6 +285,7 @@ LIBC_TOP_HALF_MUSL_SOURCES += \
         thread/__wait.c \
         thread/__timedwait.c \
         thread/default_attr.c \
+        thread/pthread_atfork.c \
         thread/pthread_attr_destroy.c \
         thread/pthread_attr_get.c \
         thread/pthread_attr_init.c \
@@ -369,6 +370,7 @@ ifeq ($(THREAD_MODEL), single)
 LIBC_TOP_HALF_MUSL_SOURCES += \
     $(addprefix $(LIBC_TOP_HALF_MUSL_SRC_DIR)/, \
         thread/default_attr.c \
+        thread/pthread_atfork.c \
         thread/pthread_attr_destroy.c \
         thread/pthread_attr_get.c \
         thread/pthread_attr_init.c \
