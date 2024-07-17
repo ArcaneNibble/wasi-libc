@@ -189,3 +189,42 @@ int pthread_spin_unlock(pthread_spinlock_t *s)
 	*s = 0;
 	return 0;
 }
+
+/* Actual thread-related stuff */
+
+int pthread_create(pthread_t *restrict res, const pthread_attr_t *restrict attrp, void *(*entry)(void *), void *restrict arg)
+{
+	/*
+		"The system lacked the necessary resources to create another thread,
+	    or the system-imposed limit on the total number of threads in a process
+		{PTHREAD_THREADS_MAX} would be exceeded."
+	*/
+	return EAGAIN;
+}
+int pthread_detach(pthread_t t)
+{
+	/*
+		"The behavior is undefined if the value specified by the thread argument
+		to pthread_detach() does not refer to a joinable thread."
+	*/
+	return 0;
+}
+int pthread_join(pthread_t t, void **res)
+{
+	/*
+		"The behavior is undefined if the value specified by the thread argument
+		to pthread_join() does not refer to a joinable thread.
+
+		The behavior is undefined if the value specified by the thread argument
+		to pthread_join() refers to the calling thread."
+	*/
+	return 0;
+}
+int pthread_tryjoin_np(pthread_t t, void **res)
+{
+	return 0;
+}
+int pthread_timedjoin_np(pthread_t t, void **res, const struct timespec *at)
+{
+	return 0;
+}
