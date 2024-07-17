@@ -213,17 +213,14 @@ int pthread_create(pthread_t *restrict res, const pthread_attr_t *restrict attrp
 int pthread_detach(pthread_t t)
 {
 	/*
-		"The behavior is undefined if the value specified by the thread argument
-		to pthread_detach() does not refer to a joinable thread."
+		If we are the only thread, when we exit the whole process exits.
+		So the storage will be reclaimed no matter what.
 	*/
 	return 0;
 }
 int pthread_join(pthread_t t, void **res)
 {
 	/*
-		"The behavior is undefined if the value specified by the thread argument
-		to pthread_join() does not refer to a joinable thread.
-
 		The behavior is undefined if the value specified by the thread argument
 		to pthread_join() refers to the calling thread."
 	*/
