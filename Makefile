@@ -383,6 +383,8 @@ LIBC_TOP_HALF_MUSL_SOURCES += \
         thread/pthread_condattr_setclock.c \
         thread/pthread_condattr_setpshared.c \
         thread/pthread_equal.c \
+        thread/pthread_getspecific.c \
+        thread/pthread_key_create.c \
         thread/pthread_mutex_destroy.c \
         thread/pthread_mutex_init.c \
         thread/pthread_mutexattr_destroy.c \
@@ -397,6 +399,7 @@ LIBC_TOP_HALF_MUSL_SOURCES += \
         thread/pthread_rwlockattr_init.c \
         thread/pthread_rwlockattr_setpshared.c \
         thread/pthread_self.c \
+        thread/pthread_setspecific.c \
         thread/pthread_spin_destroy.c \
         thread/pthread_spin_init.c \
     )
